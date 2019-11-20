@@ -6,6 +6,13 @@ public class Animal implements Serializable {
     private int id;
     private String name;
 
+    public Animal() {     } // required for de-serialization
+
+    public Animal(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -24,9 +31,6 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return id + " " + name;
     }
 }

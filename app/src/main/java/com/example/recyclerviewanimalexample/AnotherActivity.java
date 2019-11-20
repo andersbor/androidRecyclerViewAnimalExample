@@ -15,9 +15,9 @@ public class AnotherActivity extends AppCompatActivity {
         setContentView(R.layout.activity_anoter);
 
         Intent intent = getIntent();
-        String animal = intent.getStringExtra(ANIMAL);
+        Animal animal = (Animal)intent.getSerializableExtra(ANIMAL);
         TextView animalView = findViewById(R.id.anotherAnimalTextView);
-        animalView.setText(animal);
+        animalView.setText(animal.toString());
 
     }
 }

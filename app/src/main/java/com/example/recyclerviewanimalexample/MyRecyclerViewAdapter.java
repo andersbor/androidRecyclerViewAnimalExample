@@ -12,12 +12,12 @@ import java.util.List;
 // https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<String> mData;
+    private List<Animal> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    MyRecyclerViewAdapter(Context context, List<String> data) {
+    MyRecyclerViewAdapter(Context context, List<Animal> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -32,8 +32,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String animal = mData.get(position);
-        holder.myTextView.setText(animal);
+        Animal animal = mData.get(position);
+        holder.myTextView.setText(animal.getName());
     }
 
     // total number of rows
@@ -60,7 +60,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // convenience method for getting data at click position
-    String getItem(int id) {
+    Animal getItem(int id) {
         return mData.get(id);
     }
 
