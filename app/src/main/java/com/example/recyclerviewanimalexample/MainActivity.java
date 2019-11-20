@@ -1,5 +1,6 @@
 package com.example.recyclerviewanimalexample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -37,6 +38,10 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        String animal = adapter.getItem(position);
+        Toast.makeText(this, "You clicked " + animal + " on row number " + position, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, AnotherActivity.class);
+        intent.putExtra(AnotherActivity.ANIMAL, animal);
+        startActivity(intent);
     }
 }
