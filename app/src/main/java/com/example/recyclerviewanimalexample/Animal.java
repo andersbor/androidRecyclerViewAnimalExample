@@ -6,7 +6,8 @@ public class Animal implements Serializable {
     private int id;
     private String name;
 
-    public Animal() {     } // required for de-serialization
+    public Animal() {
+    } // required for de-serialization
 
     public Animal(int id, String name) {
         this.id = id;
