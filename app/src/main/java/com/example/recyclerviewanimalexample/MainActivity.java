@@ -1,18 +1,22 @@
 package com.example.recyclerviewanimalexample;
 
 import android.content.Intent;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
 
 import java.util.ArrayList;
 
 // https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
-public class MainActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    MyRecyclerViewAdapter adapter;
+    AnimalRecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +34,15 @@ public class MainActivity extends AppCompatActivity implements MyRecyclerViewAda
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, animals);
-        adapter.setClickListener(this);
+        adapter = new AnimalRecyclerViewAdapter(this, animals);
         recyclerView.setAdapter(adapter);
-    }
-
-    @Override
-    public void onItemClick(View view, int position) {
-        Animal animal = adapter.getItem(position);
-        // Toast.makeText(this, "You clicked " + animal + " on row number " + position, Toast.LENGTH_SHORT).show();
-        Intent intent = new Intent(this, AnotherActivity.class);
-        intent.putExtra(AnotherActivity.ANIMAL, animal);
-        startActivity(intent);
+        adapter.setClickListener(new AnimalRecyclerViewAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position, Animal animal) {
+                Intent intent = new Intent(getBaseContext(), AnotherActivity.class);
+                intent.putExtra(AnotherActivity.ANIMAL, animal);
+                startActivity(intent);
+            }
+        });
     }
 }
